@@ -1,4 +1,4 @@
-# Workout Tracker (Bootcamp Assignment 18 - NoSQL)
+# Budget Tracker (Bootcamp Assignment 19 - PWA)
 
 By: Sadie Sial
 
