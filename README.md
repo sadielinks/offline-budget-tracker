@@ -58,7 +58,6 @@ The technologies used to create this program were:
 ```
 ![Screenshot](assets/images/screenshot2.png)
 
-```
 
 <br>
 
