@@ -43,5 +43,16 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="index.js"></script>
+  <!-- register the service-worker (if the web browser is compatible) -->
+  <!-- taken from sprint 19 activities + https://developers.google.com/web/ilt/pwa/lab-scripting-the-service-worker -->
+  <script type="text/javascript">
+    (function () {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./service-worker.js", { scope: "/" })
+          .then(() => console.log("Service Worker registered successfully."))
+          .catch(error => console.log("Service Worker registration failed:", error));
+      }
+    })();
+  </script>
 </body>
 </html>
