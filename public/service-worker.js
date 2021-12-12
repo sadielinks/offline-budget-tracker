@@ -1,0 +1,1 @@
+// service-worker.js to utilize caches to run offline

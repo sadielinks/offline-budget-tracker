@@ -17,7 +17,7 @@ app.use(express.static("public"));
 
 // mongoose/atlas BCS readme.md:
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
+  process.env.MONGODB_URI || 'mongodb://localhost/',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
