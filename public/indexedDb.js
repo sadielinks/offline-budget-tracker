@@ -22,7 +22,16 @@ request.onsuccess = (event) => {
     db = event.target.result;
 
     if (navigator.onLine) {
-    checkDatabase();
+        checkDatabase();
     };
-    
+
 };
+
+// offline/no network saving from public/index.js
+function saveRecord(record) {
+    // transaction gets stored to 'pending' object 
+    const transaction = db.transaction('pending');
+    const store = transaction.objectStore('pending');
+    store.add(record);
+};
+
