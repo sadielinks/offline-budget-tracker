@@ -18,3 +18,11 @@ request.onerror = (error) => {
 };
 
 // IDBRequest .onsuccess https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/onsuccess
+request.onsuccess = (event) => {
+    db = event.target.result;
+
+    if (navigator.onLine) {
+    checkDatabase();
+    };
+    
+};
