@@ -22,7 +22,8 @@ request.onsuccess = (event) => {
     db = event.target.result;
 
     if (navigator.onLine) {
-        checkDatabase();
+
+        catchUpDatabase();
     };
 
 };
@@ -35,3 +36,15 @@ function saveRecord(record) {
     store.add(record);
 };
 
+// once reconnected, add records saved inside 'pending'
+function catchUpDatabase() {
+    const transaction = db.transaction('pending', 'readonly');
+    const store = transaction.objectStore('pending');
+    // eventually used for fetching data from offline time
+    const allData = store.allData();
+
+    // fetch from own app api
+    allData.onsuccess = () => {
+
+    }
+}
