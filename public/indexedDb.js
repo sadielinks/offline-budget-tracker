@@ -64,4 +64,7 @@ function catchUpDatabase() {
                 })
         }
     }
-}
+};
+
+// global window object will listen for the network coming back online
+window.addEventListener('online', catchUpDatabase);
