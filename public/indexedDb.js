@@ -45,6 +45,23 @@ function catchUpDatabase() {
 
     // fetch from own app api
     allData.onsuccess = () => {
-
+        // ignore 'empty' records that might have been saved
+        if (allData.result.length > 0) {
+            fetch('/api/transaction/bulk', {
+                method: 'POST',
+                body: JSON.stringify(allData.result),
+                // added from help with TA https://developer.mozilla.org/en-US/docs/Web/API/Headers
+                headers: {
+                    Accept: "application/json, text/plain, */*", "Content-Type": "application/json"
+                }
+            })
+                // if conditions met, results in:
+                .then((response) => response.json())
+                .then(() => {
+                    const transaction = db.transaction('pending', 'readwrite');
+                    const store = transaction.objectStore('pending');
+                    store.clear();
+                })
+        }
     }
 }
