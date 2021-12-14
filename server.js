@@ -1,12 +1,14 @@
+// dependencies
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
 
+// port
 const PORT = 5000;
-
 const app = express();
 
+// start middleware
 app.use(logger("dev"));
 
 app.use(compression());
@@ -17,7 +19,7 @@ app.use(express.static("public"));
 
 // mongoose/atlas BCS readme.md:
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/',
+  process.env.MONGODB_URI || 'mongodb://localhost/budget',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
