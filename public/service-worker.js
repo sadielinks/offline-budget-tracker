@@ -24,20 +24,20 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches
             .open(CACHE_NAME)
-            .then((cache) => cache.getAll(FILES_TO_CACHE))
-            .then(self.skipWaiting())
+            .then((cache) => cache.addAll(FILES_TO_CACHE))
     );
+    self.skipWaiting();
 });
 
 // activate sw
 self.addEventListener('activate', (event) => {
-    const currentCaches = [PRECACHE, RUNTIME];
     event.waitUntil(
         caches
+            // https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage/keys
             .keys()
-            .then((cacheNames) => {
-                return cacheNames.filter(
-                    (cacheName) => !currentCaches.includes(cacheName)
+            .then((keyList) => {
+                return keyList.filter(
+                    (keyList) => !currentCaches.includes(keyList)
                 );
             })
             .then((cachesToDelete) => {
