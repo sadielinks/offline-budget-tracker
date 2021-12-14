@@ -15,20 +15,21 @@ const FILES_TO_CACHE = [
 ];
 
 // mini project:
-const PRECACHE = 'precache-v1';
 const CACHE_NAME = 'static-cache-v1';
 const RUNTIME = 'runtime';
 const DATA_CACHE_NAME = 'data-cache-v1';
 
+// install sw
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches
-            .open(PRECACHE)
+            .open(CACHE_NAME)
             .then((cache) => cache.getAll(FILES_TO_CACHE))
             .then(self.skipWaiting())
     );
 });
 
+// activate sw
 self.addEventListener('activate', (event) => {
     const currentCaches = [PRECACHE, RUNTIME];
     event.waitUntil(
@@ -50,6 +51,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
+// fetch sw
 self.addEventListener('fetch', (event) => {
     if (event.request.url.startsWith(self.location.origin)) {
         event.respondWith(
