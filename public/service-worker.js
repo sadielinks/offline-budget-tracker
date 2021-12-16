@@ -8,10 +8,7 @@ const FILES_TO_CACHE = [
     '/service-worker.js',
     '/styles.css',
     '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png',
-    // links within index.html doc
-    '/https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-    '/https://cdn.jsdelivr.net/npm/chart.js@2.8.0',
+    '/icons/icon-512x512.png'
 ];
 
 // mini project:
@@ -36,20 +33,19 @@ self.addEventListener('activate', (event) => {
         caches
             // https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage/keys
             .keys()
-            .then((keyList) => {
-                return keyList.filter(
-                    (keyList) => !currentCaches.includes(keyList)
-                );
-            })
-            .then((cachesToDelete) => {
+            .then(keyList => {
                 return Promise.all(
-                    cachesToDelete.map((cacheToDelete) => {
-                        return caches.delete(cacheToDelete);
+                    keyList.map(key => {
+                        if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
+                            console.log(key);
+                            return caches.delete(key);
+                        }
                     })
                 );
             })
-            .then(() => self.clients.claim())
     );
+
+    self.clients.claim();
 });
 
 // fetch sw
