@@ -4,7 +4,7 @@ const FILES_TO_CACHE = [
     '/',
     '/index.html',
     '/index.js',
-    '/indexedDb.js',
+    '/db.js',
     '/service-worker.js',
     '/styles.css',
     '/icons/icon-192x192.png',
