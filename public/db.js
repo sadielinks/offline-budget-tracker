@@ -30,7 +30,7 @@ request.onsuccess = (event) => {
 // offline/no network saving from public/index.js
 function saveRecord(record) {
     // transaction gets stored to 'pending' object
-    const transaction = db.transaction('pending');
+    const transaction = db.transaction('pending', 'readwrite');
     const store = transaction.objectStore('pending');
     store.add(record);
 }
