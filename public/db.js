@@ -30,14 +30,14 @@ request.onsuccess = (event) => {
 // offline/no network saving from public/index.js
 function saveRecord(record) {
     // transaction gets stored to 'pending' object
-    const transaction = db.transaction('pending', 'readwrite');
+    const transaction = db.transaction(['pending'], 'readwrite');
     const store = transaction.objectStore('pending');
     store.add(record);
 }
 
 // once reconnected, add records saved inside 'pending'
 function catchUpDatabase() {
-    const transaction = db.transaction('pending', 'readonly');
+    const transaction = db.transaction(['pending'], 'readonly');
     const store = transaction.objectStore('pending');
     // eventually used for fetching data from offline time
     const getAll = store.getAll();
@@ -58,7 +58,7 @@ function catchUpDatabase() {
                 // if conditions met, results in:
                 .then((response) => response.json())
                 .then(() => {
-                    const transaction = db.transaction('pending', 'readwrite');
+                    const transaction = db.transaction(['pending'], 'readwrite');
                     const store = transaction.objectStore('pending');
                     store.clear();
                 });
