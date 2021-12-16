@@ -20,7 +20,8 @@ const RUNTIME = 'runtime';
 const DATA_CACHE_NAME = 'data-cache-v1';
 
 // install sw
-self.addEventListener('install', (event) => {
+self.addEventListener("install", (event) => {
+    // pre cache all static assets
     event.waitUntil(
         caches
             .open(CACHE_NAME)
