@@ -18,7 +18,7 @@ ___
 
 ## Description <br>
 
-This is a WORK IN PROGRESS!!!!
+This is a progressive budget tracker that helps track expenses with or without internet connection!
 
 
 ### User Story:
